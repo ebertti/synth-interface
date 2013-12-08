@@ -1,0 +1,18 @@
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.botao-adicionar {
+    margin-top: 25px;
+}
+
+.filho {
+    height: 70px;
+}
+
+.ul_filhos {
+    padding-left: 0px;
+}
+
+dl { border: 1px solid; }

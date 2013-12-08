@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Synth Interface</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Synt Interface</a>
+    </div>
+</div><!-- /.navbar -->
+
+<div class="js_before_app"></div>
+<div class="js_app"></div>
+
+
+<script src="libs/jquery-2.0.3.js"></script>
+<script src="libs/bootstrap.js"></script>
+<script src="libs/underscore.js"></script>
+<script src="libs/backbone.js"></script>
+<script src="libs/backbone.stickit.js"></script>
+
+<script type="text/template" id="template-abstract-body">
+    <div class="container" style="width: 100%; padding-top: 15px">
+        <div class="row">
+            <div class="col-md-4">
+                <form class="panel panel-default">
+                    <div class="panel-heading">
+                        <label for="gerado">Codigo Synth:</label>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <textarea id="gerado" name="gerado" class="form-control" rows="10">
+                            </textarea>
+                        </div>
+                        <button class="btn btn-large btn-success js_gerar">Gerar</button>
+                     </div>
+                </form>
+            </div>
+            <div class="col-md-8">
+                <ul class="media-list js_ancora_arvore">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="template-abstract-item">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <form class="filho" role="form">
+                <div class="form-group col-md-4">
+                    <label for="id_name">name:</label>
+                    <input id="id_name" class="form-control col-xs-3" name="name" type="text" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="id_widget_type">widget_type:</label>
+                    <select id="id_widget_type" class="form-control" name="widget_type">
+                        <option value="ElementExhibitor">Exibitor</option>
+                        <option value="SimpleActivator">SimpleActivator</option>
+                        <option value="AbstractInterface">Abstract</option>
+                        <option value="CompositeInterfaceElement">Composite</option>
+                    </select>
+                </div>
+                <% if (model.widget_type == "CompositeInterfaceElement") { %>
+                <div class="form-group col-md-1 js_ancora_repeat">
+                    <label for="id_widget_type">repeat:</label><div class="clearfix"></div>
+                    <input id="id_repeat" name="reapeat" type="checkbox">
+                </div>
+                <% } %>
+                <% if (model.widget_type == "CompositeInterfaceElement" || model.widget_type == "AbstractInterface") { %>
+                    <button class="top-left btn btn-success botao-adicionar js_adicionar_filhos" title="Adicionar Filho">+</button>
+                <% } %>
+            </form>
+        </div>
+        <% if (model.widget_type == "CompositeInterfaceElement" || model.widget_type == "AbstractInterface") { %>
+            <div class="panel-body">
+                <ul class="ul_filhos js_ancora_filhos">
+                </ul>
+            </div>
+        <% } %>
+    </div>
+</script>
+<script src="apps/helper.js"></script>
+<script src="apps/namespace.js"></script>
+
+<script src="apps/abstract/model.js"></script>
+<script src="apps/abstract/collection.js"></script>
+<script src="apps/abstract/view.js"></script>
+<script src="apps/abstract/app.js"></script>
+
+<script src="apps/mapping/model.js"></script>
+<script src="apps/mapping/collection.js"></script>
+<script src="apps/mapping/view.js"></script>
+<script src="apps/mapping/app.js"></script>
+
+<script src="apps/init.js"></script>
+
+</body>
+</html>
