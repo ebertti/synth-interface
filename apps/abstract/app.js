@@ -37,6 +37,7 @@ Synth.Abstract.App = Backbone.View.extend({
             });
             this.$arvore.append(view.render().$el);
         }, this);
+        $('.jqui-sort').sortable({connectWith: ".jqui-sort"});
     },
 
     gerar: function(e){
