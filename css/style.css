@@ -16,3 +16,8 @@ body {
 }
 
 dl { border: 1px solid; }
+
+.ui-state-highlight {
+    list-style-type: none;
+    height: 70px;
+}

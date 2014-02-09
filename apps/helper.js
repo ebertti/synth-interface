@@ -1,3 +1,11 @@
+ordenar_params = {
+    placeholder: "ui-state-highlight",
+    connectWith: ".jqui-sort",
+    stop: function(event, ui) {
+            ui.item.trigger('sorted', ui.item.index());
+        }
+};
+
 montar_ancoras = function(view){
     _.each(view.ancoras, function(valor, chave){
         if(chave == 'el'){

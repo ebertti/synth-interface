@@ -4,7 +4,8 @@ Synth.Abstract.View.Item = Backbone.View.extend({
     template : _.template($("#template-abstract-item").html()),
 
     events: {
-        'click .js_adicionar_filhos': "adicionar_filhos"
+        'click .js_adicionar_filhos': "adicionar_filhos",
+        'sorted': "sorted"
     },
 
     bindings: {
@@ -23,16 +24,27 @@ Synth.Abstract.View.Item = Backbone.View.extend({
         montar_ancoras(this);
         var filhos = this.model.get('children');
         _.each(filhos, function(item){
-            var view = new Synth.Abstract.View.Item({
-                model: new Synth.Abstract.Model.Item(item)
-            });
-            this.$filhos.append(view.render().$el);
+            this.criar_filho(item)
         }, this);
         return this;
     },
 
+    criar_filho: function(model){
+        var view = new Synth.Abstract.View.Item({
+            model: new Synth.Abstract.Model.Item(model)
+        });
+        this.$filhos.append(view.render().$el);
+    },
+
     adicionar_filhos: function(e){
         e.preventDefault();
+        var model = new Synth.Abstract.Model.Item();
+        this.criar_filho(model);
+        this.model.get('children').shift(model);
+    },
+
+    sorted: function(e){
+        debugger;
     }
 
 });
