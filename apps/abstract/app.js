@@ -29,23 +29,31 @@ Synth.Abstract.App = Backbone.View.extend({
 
     render_items: function(){
         this.$arvore.html('');
-        var raiz = _.isArray(this.model.get('root')) ? this.model.get('root') : [this.model.get('root')];
 
-        _.each(raiz, function(item){
+        this.model.get('root').each(function(model){
             var view = new Synth.Abstract.View.Item({
-                model: new Synth.Abstract.Model.Item(item)
+                model: model
             });
             this.$arvore.append(view.render().$el);
         }, this);
+
         $('.jqui-sort').sortable(ordenar_params);
     },
 
     gerar: function(e){
+        e.preventDefault();
         var json = this.model.get('gerado');
         var obj = eval('(' + json + ')');
-        this.model.set('root', obj);
+        var raiz = _.isArray(obj) ? obj : [obj];
+
+        var collection = new Synth.Abstract.Collection.Itens();
+        _.each(raiz, function(item){
+            var model = new Synth.Abstract.Model.Item(item, {parse:true});
+            collection.add(model);
+        }, this);
+
+        this.model.set('root', collection);
         this.render_items();
-        e.preventDefault();
     }
 
 });

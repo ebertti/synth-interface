@@ -22,8 +22,7 @@ Synth.Abstract.View.Item = Backbone.View.extend({
         this.$el.html(this.template({model: this.model.attributes}));
         this.stickit();
         montar_ancoras(this);
-        var filhos = this.model.get('children');
-        _.each(filhos, function(item){
+        this.model.get('children').each(function(item){
             this.criar_filho(item)
         }, this);
         return this;
@@ -31,7 +30,7 @@ Synth.Abstract.View.Item = Backbone.View.extend({
 
     criar_filho: function(model){
         var view = new Synth.Abstract.View.Item({
-            model: new Synth.Abstract.Model.Item(model)
+            model: model
         });
         this.$filhos.append(view.render().$el);
     },
