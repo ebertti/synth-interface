@@ -1,4 +1,23 @@
-(function(Backbone) {
+//
+// backbone.stickit - v0.7.0
+// The MIT License
+// Copyright (c) 2012 The New York Times, CMS Group, Matthew DeLambo <delambo@gmail.com> 
+//
+(function (factory) {
+
+  // Set up Stickit appropriately for the environment. Start with AMD.
+  if (typeof define === 'function' && define.amd)
+    define(['underscore', 'backbone'], factory);
+
+  // Next for Node.js or CommonJS.
+  else if (typeof exports === 'object')
+    factory(require('underscore'), require('backbone'));
+
+  // Finally, as a browser global.
+  else
+    factory(_, Backbone);
+
+}(function (_, Backbone) {
 
   // Backbone.Stickit Namespace
   // --------------------------
@@ -54,7 +73,7 @@
     stickit: function(optionalModel, optionalBindingsConfig) {
       var model = optionalModel || this.model,
         namespace = '.stickit.' + model.cid,
-        bindings = optionalBindingsConfig || this.bindings || {};
+        bindings = optionalBindingsConfig || _.result(this, "bindings") || {};
 
       this._modelBindings || (this._modelBindings = []);
       this.unstickit(model);
@@ -100,7 +119,7 @@
             var method = function(event) {
               var val = config.getVal.call(this, $el, event, config, _.rest(arguments));
               // Don't update the model if false is returned from the `updateModel` configuration.
-              if (evaluateBoolean(this, config.updateModel, val, config))
+              if (evaluateBoolean(this, config.updateModel, val, event, config))
                 setAttr(model, modelAttr, val, options, this, config);
             };
             method = _.bind(method, this);
@@ -154,7 +173,7 @@
   // If the given `fn` is a string, then view[fn] is called, otherwise it is
   // a function that should be executed.
   var applyViewFn = function(view, fn) {
-    if (fn) return (_.isString(fn) ? view[fn] : fn).apply(view, _.rest(arguments, 2));
+    if (fn) return (_.isString(fn) ? evaluatePath(view,fn) : fn).apply(view, _.rest(arguments, 2));
   };
 
   var getSelectedOption = function($select) { return $select.find('option').not(function(){ return !this.selected; }); };
@@ -177,8 +196,24 @@
 
   // Prepares the given `val`ue and sets it into the `model`.
   var setAttr = function(model, attr, val, options, context, config) {
-    if (config.onSet) val = applyViewFn(context, config.onSet, val, config);
-    model.set(attr, val, options);
+    var value = {};
+    if (config.onSet)
+      val = applyViewFn(context, config.onSet, val, config);
+
+    if (config.set)
+      applyViewFn(context, config.set, attr, val, options, config);
+    else {
+      value[attr] = val;
+      // If `observe` is defined as an array and `onSet` returned
+      // an array, then map attributes to their values.
+      if (_.isArray(attr) && _.isArray(val)) {
+        value = _.reduce(attr, function(memo, attribute, index) {
+          memo[attribute] = _.has(val, index) ? val[index] : null;
+          return memo;
+        }, {});
+      }
+      model.set(value, options);
+    }
   };
 
   // Returns the given `attr`'s value from the `model`, escaping and
@@ -499,4 +534,4 @@
     }
   }]);
 
-})(Backbone);
+}));
