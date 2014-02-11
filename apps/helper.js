@@ -1,9 +1,6 @@
 ordenar_params = {
     placeholder: "ui-state-highlight",
-    connectWith: ".jqui-sort",
-    stop: function(event, ui) {
-            ui.item.trigger('sorted', ui.item.index());
-        }
+    connectWith: ".jqui-sort"
 };
 
 montar_ancoras = function(view){

@@ -5,7 +5,7 @@ Synth.Abstract.View.Item = Backbone.View.extend({
 
     events: {
         'click .js_adicionar_filhos': "adicionar_filhos",
-        'sorted': "sorted"
+        'sortstop': "sortstop"
     },
 
     bindings: {
@@ -16,6 +16,10 @@ Synth.Abstract.View.Item = Backbone.View.extend({
 
     ancoras:{
         'filhos' : '.js_ancora_filhos'
+    },
+
+    initialize: function(){
+        this.model.on('change:widget_type', this.widget_change, this);
     },
 
     render: function(){
@@ -39,11 +43,17 @@ Synth.Abstract.View.Item = Backbone.View.extend({
         e.preventDefault();
         var model = new Synth.Abstract.Model.Item();
         this.criar_filho(model);
-        this.model.get('children').shift(model);
+        this.model.get('children').add(model);
     },
 
-    sorted: function(e){
-        debugger;
+    widget_change: function(){
+        console.log('redae');
+        this.render();
+    },
+
+    sortstop: function(e, item){
+        console.log(e, item);
+        //e.stopPropagation();
     }
 
 });

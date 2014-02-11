@@ -24,6 +24,12 @@ Synth.Abstract.Model.Item = Backbone.Model.extend({
     parse: function(data){
         data.children = new Synth.Abstract.Collection.Itens(data.children || [], {parse:true});
         return data;
+    },
+
+    initialize: function(){
+        if(!this.get('children')){
+            this.set('children', new Synth.Abstract.Collection.Itens());
+        }
     }
 
 });
