@@ -3,11 +3,13 @@ Synth.Abstract.App = Backbone.View.extend({
     template : _.template($("#template-abstract-body").html()),
 
     bindings: {
-        '#gerado': 'gerado'
+        '#gerado': 'gerado',
+        '#obtido': 'obtido'
     },
 
     events: {
-        'click .js_gerar':'gerar'
+        'click .js_gerar':'gerar',
+        'click .js_obter':'obter'
     },
 
     ancoras: {
@@ -54,6 +56,15 @@ Synth.Abstract.App = Backbone.View.extend({
 
         this.model.set('root', collection);
         this.render_items();
+    },
+
+    obter: function(e){
+        e.preventDefault();
+        var filhos = [];
+        this.model.get('root').each(function(model){
+            filhos.push(model.toJson());
+        });
+        this.model.set('obtido', source(filhos.length > 1 ? filhos : filhos[0]))
     }
 
 });

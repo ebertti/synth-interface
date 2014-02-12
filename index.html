@@ -40,7 +40,14 @@
                             <textarea id="gerado" name="gerado" class="form-control" rows="10">
                             </textarea>
                         </div>
+                        <button class="btn btn-large btn-info js_obter pull-right">Obter</button>
                         <button class="btn btn-large btn-success js_gerar">Gerar</button>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <textarea id="obtido" name="obtido" class="form-control" rows="10">
+                            </textarea>
+                        </div>
                      </div>
                 </form>
             </div>
@@ -73,7 +80,7 @@
                 <% if (model.widget_type == "CompositeInterfaceElement") { %>
                 <div class="form-group col-md-1 js_ancora_repeat">
                     <label for="id_widget_type">repeat:</label><div class="clearfix"></div>
-                    <input id="id_repeat" name="reapeat" type="checkbox">
+                    <input id="id_repeatable" name="repeatable" type="checkbox">
                 </div>
                 <% } %>
                 <% if (model.widget_type == "CompositeInterfaceElement" || model.widget_type == "AbstractInterface") { %>
@@ -89,6 +96,10 @@
         <% } %>
     </div>
 </script>
+
+
+
+
 <script src="apps/helper.js"></script>
 <script src="apps/namespace.js"></script>
 

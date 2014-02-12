@@ -9,7 +9,7 @@ Synth.Abstract.View.Item = Backbone.View.extend({
     },
 
     bindings: {
-        'input[name="repeat"]': 'repeat',
+        'input[name="repeatable"]': 'repeatable',
         'input[name="name"]': 'name',
         'select[name="widget_type"]':'widget_type'
     },
@@ -19,7 +19,8 @@ Synth.Abstract.View.Item = Backbone.View.extend({
     },
 
     initialize: function(){
-        this.model.on('change:widget_type', this.widget_change, this);
+        this.model.on('change:widget_type', this.render, this);
+        this.model.on('change:repeatable', this.repeatable_change, this);
     },
 
     render: function(){
@@ -46,9 +47,11 @@ Synth.Abstract.View.Item = Backbone.View.extend({
         this.model.get('children').add(model);
     },
 
-    widget_change: function(){
-        console.log('redae');
-        this.render();
+    repeatable_change: function(){
+        console.log('asdasd');
+        if(!this.model.get("repeatable")){
+            this.model.attributes = _.omit(this.model.attributes, 'repeatable')
+        }
     },
 
     sortstop: function(e, item){

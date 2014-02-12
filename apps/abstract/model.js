@@ -30,6 +30,23 @@ Synth.Abstract.Model.Item = Backbone.Model.extend({
         if(!this.get('children')){
             this.set('children', new Synth.Abstract.Collection.Itens());
         }
+    },
+
+    pode_ter_filhos: function(){
+        return _.indexOf(['CompositeInterfaceElement', 'AbstractInterface'], this.get('widget_type')) > -1
+    },
+
+    toJson: function(){
+        var original = _.omit(_.clone(this.attributes), "children", "ordem");
+        if(this.pode_ter_filhos() > 0){
+            var filhos = [];
+            this.get("children").each(function(model){
+                filhos.push(model.toJson());
+            });
+            original.children = filhos;
+        }
+
+        return original
     }
 
 });
