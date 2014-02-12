@@ -53,15 +53,18 @@ Synth.Abstract.View.Item = Backbone.View.extend({
 
     sortreceive: function(e, ui){
         ui.item.trigger('collection_change', this.model.get('children'));
+        e.stopPropagation();
     },
 
     sortremove: function(e, ui){
         ui.item.trigger('remove');
+        e.stopPropagation();
     },
 
     collection_change: function(e, collection_new){
         var collection_old = this.model.collection;
         collection_old.remove(this.model);
+        this.model.set('ordem', this.$el.index());
         collection_new.add(this.model, {at:this.$el.index()})
     },
 
