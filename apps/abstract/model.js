@@ -30,6 +30,13 @@ Synth.Abstract.Model.Item = Backbone.Model.extend({
         if(!this.get('children')){
             this.set('children', new Synth.Abstract.Collection.Itens());
         }
+        this.on("change:repeatable", this.repeatable_change, this)
+    },
+
+    repeatable_change: function(){
+        if(!this.get("repeatable")){
+            this.unset("repeatable", {silent:true})
+        }
     },
 
     pode_ter_filhos: function(){
