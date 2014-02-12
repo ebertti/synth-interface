@@ -5,7 +5,10 @@ Synth.Abstract.View.Item = Backbone.View.extend({
 
     events: {
         'click .js_adicionar_filhos': "adicionar_filhos",
-        'sortstop': "sortstop"
+        'sortreceive': "sortreceive",
+        'sortremove': 'sortremove',
+        'sortstop': "sortstop",
+        'collection_change': 'collection_change'
     },
 
     bindings: {
@@ -26,6 +29,7 @@ Synth.Abstract.View.Item = Backbone.View.extend({
         this.$el.html(this.template({model: this.model.attributes}));
         this.stickit();
         montar_ancoras(this);
+        this.subviews = [];
         this.model.get('children').each(function(item){
             this.criar_filho(item)
         }, this);
@@ -36,6 +40,7 @@ Synth.Abstract.View.Item = Backbone.View.extend({
         var view = new Synth.Abstract.View.Item({
             model: model
         });
+        this.subviews.push(view);
         this.$filhos.append(view.render().$el);
     },
 
@@ -46,8 +51,29 @@ Synth.Abstract.View.Item = Backbone.View.extend({
         this.model.get('children').add(model);
     },
 
-    sortstop: function(e, item){
+    sortreceive: function(e, ui){
+        ui.item.trigger('collection_change', this.model.get('children'));
+    },
 
+    sortremove: function(e, ui){
+        ui.item.trigger('remove');
+    },
+
+    collection_change: function(e, collection_new){
+        var collection_old = this.model.collection;
+        collection_old.remove(this.model);
+        collection_new.add(this.model, {at:this.$el.index()})
+    },
+
+    sortstop: function(e, ui){
+
+        _.each(this.subviews, function(item){
+            item.model.set('ordem', item.$el.index());
+        });
+        this.model.get('children').sort({silent: true});
+         _.invoke(this.subviews, 'remove');
+        this.render();
+        preparar_ordenacao();
     }
 
 });

@@ -1,6 +1,9 @@
-ordenar_params = {
-    placeholder: "ui-state-highlight",
-    connectWith: ".jqui-sort"
+
+preparar_ordenacao = function(){
+    $('.jqui-sort').sortable({
+            placeholder: "ui-state-highlight",
+            connectWith: ".jqui-sort"
+    });
 };
 
 montar_ancoras = function(view){
@@ -50,10 +53,10 @@ source = function(object, filter, indent, startingIndent) {
             return (legalKey(key) ? key : JSON.stringify(key)) + ':' + walk(object[key], filter, indent, nextIndent);
         })) + '}' : '{}'
     }
-}
+};
 
 var KEYWORD_REGEXP = /^(abstract|boolean|break|byte|case|catch|char|class|const|continue|debugger|default|delete|do|double|else|enum|export|extends|false|final|finally|float|for|function|goto|if|implements|import|in|instanceof|int|interface|long|native|new|null|package|private|protected|public|return|short|static|super|switch|synchronized|this|throw|throws|transient|true|try|typeof|undefined|var|void|volatile|while|with)$/;
 
 function legalKey(string) {
     return /^[a-z_$][0-9a-z_$]*$/gi.test(string) && !KEYWORD_REGEXP.test(string);
-}
+};
