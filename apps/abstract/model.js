@@ -21,6 +21,10 @@ Synth.Abstract.Model.Documento = Backbone.Model.extend({
 
 Synth.Abstract.Model.Item = Backbone.Model.extend({
 
+     defaults: {
+        "widget_type":  "ElementExhibitor"
+     },
+
     parse: function(data){
         data.children = new Synth.Abstract.Collection.Itens(data.children || [], {parse:true});
         return data;

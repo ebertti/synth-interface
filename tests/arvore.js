@@ -1,13 +1,21 @@
 module("ARVORE");
 
 test("click em adicionar elemento na arvore", function() {
-    var qtd = $('.js_ancora_filhos').length;
-    $('.js_adicionar_filhos')[0].click();
-    ok($('.js_ancora_filhos').length > qtd);
+    $('.js_gerar').click();
+    var qtd = $('.list-unstyled').length;
+    $('.js_adicionar_filhos:first').click();
+    ok($('.list-unstyled').length > qtd);
 });
 
-test("click em obter", function() {
-    $('.js_obter').click();
-    ok($('#obtido').val().length);
+test("remover elemento da arvore", function() {
+    $('.js_gerar').click();
+    var qtd = $('.list-unstyled').length;
+    $('.js_remover:last').click();
+    ok($('.list-unstyled').length < qtd);
+});
+
+test("arvore esta ordenavel com mouse", function(){
+     $('.js_gerar').click();
+     ok($('.ui-sortable').length > 0)
 });
 

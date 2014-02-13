@@ -25,3 +25,7 @@ dl { border: 1px solid; }
 .jqui-sort {
     min-height: 80px;;
 }
+
+.mouse_ponteiro {
+    cursor: pointer;
+}

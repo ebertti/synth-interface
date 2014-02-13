@@ -5,6 +5,7 @@ Synth.Abstract.View.Item = Backbone.View.extend({
 
     events: {
         'click .js_adicionar_filhos': "adicionar_filhos",
+        'click .js_remover': "remover",
         'sortreceive': "sortreceive",
         'sortremove': 'sortremove',
         'sortstop': "sortstop",
@@ -49,6 +50,11 @@ Synth.Abstract.View.Item = Backbone.View.extend({
         var model = new Synth.Abstract.Model.Item();
         this.criar_filho(model);
         this.model.get('children').add(model);
+    },
+
+    remover: function(e){
+        this.model.destroy();
+        this.remove();
     },
 
     sortreceive: function(e, ui){
