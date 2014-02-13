@@ -29,3 +29,7 @@ dl { border: 1px solid; }
 .mouse_ponteiro {
     cursor: pointer;
 }
+
+#obtido, .js_obter {
+    display: none;
+}

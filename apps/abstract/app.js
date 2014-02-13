@@ -13,7 +13,9 @@ Synth.Abstract.App = Backbone.View.extend({
     },
 
     ancoras: {
-        arvore : '.js_ancora_arvore'
+        arvore : '.js_ancora_arvore',
+        text_obtido: '#obtido',
+        botao_obtido: '.js_obter'
     },
 
     initialize: function(){
@@ -54,6 +56,8 @@ Synth.Abstract.App = Backbone.View.extend({
 
         this.model.set('root', collection);
         this.render_items();
+        this.$text_obtido.show();
+        this.$botao_obtido.show();
         preparar_ordenacao();
     },
 
