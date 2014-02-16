@@ -15,7 +15,7 @@ Synth.Abstract.View.Item = Backbone.View.extend({
     bindings: {
         'input[name="repeatable"]': 'repeatable',
         'input[name="name"]': 'name',
-        'select[name="widget_type"]':'widget_type'
+        'input[name="widget_type"]':'widget_type'
     },
 
     ancoras:{
@@ -34,6 +34,7 @@ Synth.Abstract.View.Item = Backbone.View.extend({
         this.model.get('children').each(function(item){
             this.criar_filho(item)
         }, this);
+        this.$('input[value="' + this.model.get('widget_type') + '"]:first').parent().addClass('active');
         return this;
     },
 
