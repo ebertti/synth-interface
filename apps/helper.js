@@ -3,7 +3,7 @@ preparar_ordenacao = function(){
     $('.jqui-sort').sortable({
             placeholder: "ui-state-highlight",
             connectWith: ".jqui-sort",
-            handle: ".glyphicon-sort"
+            handle: ".jqui-handle"
     });
 };
 
