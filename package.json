@@ -1,0 +1,21 @@
+{
+  "name": "synth-interface",
+  "version": "0.1.0",
+  "description": "Construir modelo de interface abstrata para o sistema Synth",
+  "main": "apps/init.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ebertti/synth-interface.git"
+  },
+  "homepage": "https://github.com/ebertti/synth-interface",
+  "keywords": [
+    "synth"
+  ],
+  "author": "Ezequiel Bertti",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-cli": "*",
+    "grunt-contrib-qunit": "*"
+  }
+}

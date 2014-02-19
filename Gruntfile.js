@@ -1,3 +1,13 @@
+/*
+ * synth-interface
+ * http://github.com/ebertti/synth-interface/
+ *
+ * Copyright (c) 2014 Ezequiel Bertti
+ * Licensed under the MIT license.
+ */
+
+'use strict';
+
 module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
@@ -7,7 +17,7 @@ module.exports = function(grunt) {
     });
 
     // Task to run tests
-    grunt.registerTask('test', 'qunit');
+    grunt.registerTask('default', 'qunit');
 
     grunt.loadNpmTasks('grunt-contrib-qunit');
 };
