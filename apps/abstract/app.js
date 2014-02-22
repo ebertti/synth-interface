@@ -1,3 +1,17 @@
+//===============================================================================================================
+// Arquivo..........: abstract/app.cs
+// Autor............: Bertti, E (EB)
+// Ult. Atualização.: 21/01/2014
+//
+// Classe responsável pela aplicação do de montagem do abstract do Synth
+//
+//
+// Versão     Data     Autor  Comentários
+// ==============================================================================================================
+// 1.0.0.0  21/01/2014  EB  Criação da classe.
+//===============================================================================================================
+
+
 Synth.Abstract.App = Backbone.View.extend({
     el: ".js_app",
     template : _.template($("#template-abstract-body").html()),
@@ -18,12 +32,14 @@ Synth.Abstract.App = Backbone.View.extend({
         botao_obtido: '.js_obter'
     },
 
+    // Método vindo do framework Backbone responsável por instanciar atributos no objeto
     initialize: function(){
         if(!this.options || !this.options.model){
             this.model = new Synth.Abstract.Model.Documento();
         }
     },
 
+    // Método responsável pela renderização do HTML no navegador
     render: function(){
         this.$el.html(this.template());
         this.stickit();
@@ -31,6 +47,7 @@ Synth.Abstract.App = Backbone.View.extend({
         return this;
     },
 
+    // renderiza o arvore depois que o botao gerar é clicado
     render_items: function(){
         this.$arvore.html('');
 
@@ -42,6 +59,7 @@ Synth.Abstract.App = Backbone.View.extend({
         }, this);
     },
 
+    // tratamento do evento do botão gerar
     gerar: function(e){
         e.preventDefault();
         var json = this.model.get('gerado');
@@ -61,6 +79,7 @@ Synth.Abstract.App = Backbone.View.extend({
         preparar_ordenacao();
     },
 
+    // tratamento do evento do botao obter
     obter: function(e){
         e.preventDefault();
         var filhos = [];

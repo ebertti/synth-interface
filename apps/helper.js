@@ -1,4 +1,17 @@
+//===============================================================================================================
+// Arquivo..........: helper.js
+// Autor............: Bertti, E (EB)
+// Ult. Atualização.: 21/01/2014
+//
+// Metodos e extensões auxiliares para o desenvenvoliemnto da aplicação
+//
+//
+// Versão     Data     Autor  Comentários
+// ==============================================================================================================
+// 1.0.0.0  21/01/2014  EB  Criação do arquivo e algumas funções.
+//===============================================================================================================
 
+// Inicializa o jquery ui
 preparar_ordenacao = function(){
     $('.jqui-sort').sortable({
             placeholder: "ui-state-highlight",
@@ -7,6 +20,7 @@ preparar_ordenacao = function(){
     });
 };
 
+// Cria as ancoras utilizadas nas views do backbone
 montar_ancoras = function(view){
     _.each(view.ancoras, function(valor, chave){
         if(chave == 'el'){
@@ -16,6 +30,7 @@ montar_ancoras = function(view){
     })
 };
 
+// gera o codigo no formato esperado pelo synth
 source = function(object, filter, indent, startingIndent) {
     var seen = [];
     return walk(object, filter, indent === undefined ? '  ' : (indent || ''), startingIndent || '');
