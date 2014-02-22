@@ -1,6 +1,6 @@
 {
   "name": "synth-interface",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Construir modelo de interface abstrata para o sistema Synth",
   "main": "apps/init.js",
   "repository": {

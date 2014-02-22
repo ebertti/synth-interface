@@ -1,10 +1,15 @@
-/*
- * synth-interface
- * http://github.com/ebertti/synth-interface/
- *
- * Copyright (c) 2014 Ezequiel Bertti
- * Licensed under the MIT license.
- */
+//===============================================================================================================
+// Arquivo..........: Gruntfile.js
+// Autor............: Bertti, E (EB)
+// Ult. Atualização.: 26/01/2014
+//
+// Roteiro de testes para funcionameno do grunt e dos testes com o qunit
+//
+//
+// Versão     Data     Autor  Comentários
+// ==============================================================================================================
+// 1.0.0.0  26/01/2014  EB  Criação dos testes.
+//===============================================================================================================
 
 'use strict';
 
