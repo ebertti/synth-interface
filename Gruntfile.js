@@ -1,7 +1,7 @@
 //===============================================================================================================
 // Arquivo..........: Gruntfile.js
 // Autor............: Bertti, E (EB)
-// Ult. Atualização.: 26/01/2014
+// Ult. Atualização.: 16/02/2014
 //
 // Roteiro de testes para funcionameno do grunt e dos testes com o qunit
 //
