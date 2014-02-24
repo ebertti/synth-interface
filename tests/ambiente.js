@@ -1,7 +1,7 @@
 //===============================================================================================================
 // Arquivo..........: tests/ambiente.js
 // Autor............: Bertti, E (EB)
-// Ult. Atualização.: 25/01/2014
+// Ult. Atualização.: 15/01/2014
 //
 // Testes para garantir que o ambiente está configurado
 //

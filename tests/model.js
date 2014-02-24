@@ -1,7 +1,7 @@
 //===============================================================================================================
 // Arquivo..........: tests/model.cs
 // Autor............: Bertti, E (EB)
-// Ult. Atualização.: 25/01/2014
+// Ult. Atualização.: 15/01/2014
 //
 // Testes para garantir o comportamento do model e da collection
 //

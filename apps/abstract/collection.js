@@ -1,14 +1,14 @@
 //===============================================================================================================
 // Arquivo..........: abstract/collection.js
 // Autor............: Bertti, E (EB)
-// Ult. Atualização.: 21/01/2014
+// Ult. Atualização.: 10/01/2014
 //
 // Classe responsável pela coleção de itens da arvore do abstract
 //
 //
 // Versão     Data     Autor  Comentários
 // ==============================================================================================================
-// 1.0.0.0  21/01/2014  EB  Criação da classe.
+// 1.0.0.0  10/01/2014  EB  Criação da classe.
 //===============================================================================================================
 
 Synth.Abstract.Collection.Itens = Backbone.Collection.extend({

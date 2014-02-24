@@ -1,14 +1,14 @@
 //===============================================================================================================
 // Arquivo..........: helper.js
 // Autor............: Bertti, E (EB)
-// Ult. Atualização.: 21/01/2014
+// Ult. Atualização.: 10/01/2014
 //
 // Metodos e extensões auxiliares para o desenvenvoliemnto da aplicação
 //
 //
 // Versão     Data     Autor  Comentários
 // ==============================================================================================================
-// 1.0.0.0  21/01/2014  EB  Criação do arquivo e algumas funções.
+// 1.0.0.0  10/01/2014  EB  Criação do arquivo e algumas funções.
 //===============================================================================================================
 
 // Inicializa o jquery ui
